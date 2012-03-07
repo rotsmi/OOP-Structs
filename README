@@ -1,0 +1,37 @@
+Object Oriented Programming in C 
+
+WHAT IS THIS?
+============  
+This is an implementation of the concepts of object-oriented design using C structs. It shows what goes behind-the-scenes in classes, inheritance, linkage, methods, objects, polymorphisms, abstract data type, containers and templates using C.  
+
+DESCRIPTION 
+==========
+To do class hierarchy in C, a base class name Person is implemented, a class named Student and a class named Professor both derived directly from Person, a class named Under and Grad derived both from Student. Classes are represented by structs. Person and Student classes are analogous to abstract base classes where no function exist in the user program to instantiate them. Derived classes can be add without changing any code in the base classes. 
+
+To implement a "template" it is used a C long macro for a list container and the iterator. As a "template", it will be able to contain any type without using void * . Moreover, append to the container list is implemented in constant time O(1).  
+
+There are three struct types implemented, one to represent the container itself, another for each element in the container, and a third one for the iterator. The struct type for the container itself contains a pointer to a sentinel node, and the number of elements in the list. The node struct type have a pointer to the next element. The data structure implemented is a Circular doubly-linked list with a sentinel node. The iterator struct type contains just a pointer to the node that it is positioned at.  
+
+Since the container have slightly different source code for each type, a long macro, named List_DEFINE() is implemented. The macro takes one argument, which is the contained type. This macro contains all the definitions needed for the container. By making the name of the contained type part of the generated classes and functions, a separate instance of the source code is generated for each contained type.
+
+The struct for a container containing MyClass objects is named List_MyClass, while the struct for a container of int variables is named List_int. A container for pointers to MyClass objects can be created by first defining a typedef: 
+	typedef MyClass *MyClassPtr; 
+Instantiating the container code is made by List_DEFINE(MyClassPtr). A merge sort is implemented to support the sort() method. It is O(n lg n) and does not allocate any extra memory in the process of sorting.
+ 
+USAGE
+===== 
+This is not completely implemented in strict C, but rather more like C++ without classes. A main.cpp user program is used to test the overall functionality, including running time statistics and stress test described in the file. A Makefile is provided.
+  
+To compile do this: $make 
+To run do this: $./a.out 
+
+LICENSE
+=======
+Copyright (c) 2012 Alex Garcia
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
